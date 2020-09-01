@@ -1,5 +1,5 @@
 // test run:
-// sudo /usr/local/go/bin/go run https-client.go
+// /usr/local/go/bin/go run https-client.go
 package main
 
 import (
@@ -16,7 +16,6 @@ import (
 
 var (
     SERVER_CERT = "/tmp/cert/server.crt"
-    SERVER_KEY  = "/tmp/cert/server.key"
     CLIENT_CERT = "/tmp/cert/client.crt"
     CLIENT_KEY  = "/tmp/cert/client.key"
 )
@@ -64,7 +63,7 @@ func main() {
         log.Errorf("%v", err)
         return
     }
-    fmt.Printf("http2 response:\n")
+    fmt.Printf("http/2 response:\n")
     printHtml(resp)
 
     // http 1.1
@@ -82,16 +81,16 @@ func main() {
         log.Errorf("%v", err)
         return
     }
-    fmt.Printf("\nhttp 1.1 response:\n")
+    fmt.Printf("\nhttp/1.1 response:\n")
     printHtml(resp)
 
     // http 1.1 no TLS
-    client1_0 := &http.Client{}
-    resp, err = client1_0.Get("http://localhost:8080/hello")
+    client1_1 = &http.Client{}
+    resp, err = client1_1.Get("http://localhost:8080/hello")
     if err != nil {
         log.Errorf("%v", err)
         return
     }
-    fmt.Printf("\nhttp 1.1  no TLS response:\n")
+    fmt.Printf("\nhttp/1.1 response without TLS:\n")
     printHtml(resp)
 }

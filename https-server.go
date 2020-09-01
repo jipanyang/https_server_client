@@ -27,7 +27,6 @@ var (
     SERVER_CERT = "/tmp/cert/server.crt"
     SERVER_KEY  = "/tmp/cert/server.key"
     CLIENT_CERT = "/tmp/cert/client.crt"
-    CLIENT_KEY  = "/tmp/cert/client.key"
 
     requireClientCert = flag.Bool("clientcert", false, "When set, RequireAndVerifyClientCert")
     x509ScriptPath    = flag.String("x509script", ".", "Path to the x509-key-pair.sh script")
@@ -43,7 +42,7 @@ func generateX509Cert() {
     if err != nil {
         log.Fatal(err)
     }
-    log.Infof("x509-key-pair generated: %V\n", out.String())
+    log.V(1).Infof("x509-key-pair generated: %V\n", out.String())
 }
 
 func main() {
